@@ -343,6 +343,18 @@ const SUST_EXCLUIDOS = ["1127242102","1034577536"];
 const _mkP = obs => ({status:'P', obs: obs||''});
 const _mkA = obs => ({status:'A', obs: obs||''});
 
+const _ALL_P = () => ({
+  "1000077541":_mkP(),"1000350624":_mkP(),"1011100245":_mkP(),"1013106028":_mkP(),
+  "1013256390":_mkP(),"1013263957":_mkP(),"1014861582":_mkP(),"1014997827":_mkP(),
+  "1016596401":_mkP(),"1016951985":_mkP(),"1019764949":_mkP(),"1019843108":_mkP(),
+  "1021397707":_mkP(),"1021675662":_mkP(),"1023369961":_mkP(),"1023375110":_mkP(),
+  "1023891376":_mkP(),"1027151839":_mkP(),"1028663002":_mkP(),"1028863347":_mkP(),
+  "1029143351":_mkP(),"1029144591":_mkP(),"1029660441":_mkP(),"1030557501":_mkP(),
+  "1031541266":_mkP(),"1031805029":_mkP(),"1032877570":_mkP(),"1033102053":_mkP(),
+  "1033102176":_mkP(),"1033710696":_mkP(),"1034577536":_mkP(),"1040874338":_mkP(),
+  "1070007994":_mkP(),"1141317881":_mkP(),"1013108778":_mkP(),"1127242102":_mkP()
+});
+
 const DEFAULT_ATT_SESSIONS = {
   "2026-03-10": {
     date:"2026-03-10", week:"Semana 1",
@@ -368,6 +380,26 @@ const DEFAULT_ATT_SESSIONS = {
       "1070007994":_mkP(), "1141317881":_mkP(), "1013108778":_mkP(),
       "1127242102":_mkA("Falla — no asistió a clase ni a sustentación, sin incapacidad")
     }
+  },
+  "2026-03-17": {
+    date:"2026-03-17", week:"Semana 2",
+    topic:"⚠️ Pendiente de registro — actualizar fallas",
+    records: _ALL_P()
+  },
+  "2026-03-24": {
+    date:"2026-03-24", week:"Semana 3",
+    topic:"⚠️ Pendiente de registro — actualizar fallas",
+    records: _ALL_P()
+  },
+  "2026-03-27": {
+    date:"2026-03-27", week:"Semana 4",
+    topic:"⚠️ Pendiente de registro — actualizar fallas",
+    records: _ALL_P()
+  },
+  "2026-04-01": {
+    date:"2026-04-01", week:"Semana 5",
+    topic:"⚠️ Pendiente de registro — actualizar fallas",
+    records: _ALL_P()
   }
 };
 
