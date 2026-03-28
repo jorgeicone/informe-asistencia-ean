@@ -1,323 +1,621 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Informe Consolidado · COMUNICACIÓN DIGITAL 360 MARKETING · EAN</title>
-<style>
-  :root{--g:#1B5E20;--gm:#2E7D32;--gl:#388E3C;--pale:#C8E6C9;--bg:#F1F8E9;--acc:#92D050;}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:#212121;font-size:13px}
-  .hdr{background:linear-gradient(135deg,var(--g) 0%,var(--gl) 100%);color:white;padding:16px 24px;
-    display:flex;align-items:center;gap:16px;box-shadow:0 3px 10px rgba(0,0,0,.3)}
-  .hdr .logo{font-size:30px;font-weight:900;color:var(--acc);letter-spacing:-1px}
-  .hdr h1{font-size:16px;font-weight:700;line-height:1.3}
-  .hdr p{font-size:11px;opacity:.85;margin-top:2px}
-  .hdr .ts{margin-left:auto;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px;
-    font-size:11px;font-weight:700;white-space:nowrap}
-  .tabs{display:flex;background:var(--gm);overflow-x:auto}
-  .tab-btn{padding:12px 20px;color:rgba(255,255,255,.75);font-size:13px;font-weight:600;
-    border:none;background:none;cursor:pointer;white-space:nowrap;
-    border-bottom:3px solid transparent;transition:all .2s}
-  .tab-btn:hover{color:white;background:rgba(255,255,255,.1)}
-  .tab-btn.active{color:var(--acc);border-bottom-color:var(--acc);background:rgba(0,0,0,.15)}
-  .tab-pane{display:none;padding:20px;max-width:1200px;margin:0 auto}
-  .tab-pane.active{display:block}
-  .kpis{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px}
-  .kpi{background:white;border-radius:8px;padding:10px 16px;border-top:4px solid;
-    box-shadow:0 2px 6px rgba(0,0,0,.08);min-width:130px}
-  .kpi .lbl{font-size:10px;text-transform:uppercase;color:#546E7A;font-weight:700}
-  .kpi .val{font-size:26px;font-weight:900;line-height:1.2}
-  .card{background:white;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);
-    padding:18px;margin-bottom:16px;border-left:4px solid var(--gl)}
-  .card-title{font-size:14px;font-weight:700;color:var(--g);margin-bottom:14px}
-  .tw{overflow-x:auto;border-radius:6px;border:1px solid #A5D6A7}
-  table{width:100%;border-collapse:collapse;font-size:12px}
-  thead th{background:var(--gl);color:white;padding:9px 10px;text-align:left;font-size:11px;
-    white-space:nowrap;position:sticky;top:0;z-index:1}
-  tbody tr:nth-child(even){background:#F9FBF9}
-  tbody tr:hover{background:var(--pale)}
-  td{padding:7px 10px;border-bottom:1px solid #E8F5E9;vertical-align:middle}
-  .num{text-align:center}
-  .pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
-  .note{background:white;border-radius:6px;padding:10px 14px;font-size:11px;color:#546E7A;
-    margin-top:10px;border-left:3px solid var(--acc)}
-  @media(max-width:600px){.hdr{flex-wrap:wrap}.hdr .ts{margin-left:0}}
-</style>
-</head>
-<body>
-
-<div class="hdr">
-  <div class="logo">EAN</div>
-  <div>
-    <h1>📊 Informe Consolidado · Asistencia &amp; Notas</h1>
-    <p>COMUNICACIÓN DIGITAL 360 MARKETING · AFPN0093 · S1G1 2026-001 · Prof. Jorge Hugo Pérez Gaona</p>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+  <title>Informe EAN · COMUNICACIÓN DIGITAL 360 MARKETING</title><style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',Arial,sans-serif;background:#F1F8E9;color:#212121;font-size:13px}
+    .hdr{background:linear-gradient(135deg,#1B5E20,#388E3C);color:white;padding:12px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 3px 8px rgba(0,0,0,.3)}
+    .hdr .logo{font-size:26px;font-weight:900;color:#92D050}
+    .hdr h1{font-size:14px;font-weight:700}.hdr p{font-size:11px;opacity:.85;margin-top:2px}
+    .hdr .ts{margin-left:auto;background:#92D050;color:#1B5E20;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:700;white-space:nowrap}
+    .tabs{display:flex;background:#2E7D32;border-bottom:3px solid #1B5E20}
+    .tab{padding:11px 20px;color:rgba(255,255,255,.75);font-size:13px;font-weight:600;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .2s}
+    .tab:hover{color:white;background:rgba(255,255,255,.1)}
+    .tab.active{color:#92D050;border-bottom-color:#92D050;background:rgba(0,0,0,.15)}
+    .pane{display:none;padding:16px 20px;max-width:1350px;margin:0 auto}.pane.active{display:block}
+    .kpis{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .kpi{background:white;border-radius:8px;padding:10px 14px;border-top:4px solid #388E3C;box-shadow:0 2px 6px rgba(0,0,0,.1);min-width:120px}
+    .kpi .lb{font-size:10px;text-transform:uppercase;color:#546E7A;font-weight:700}
+    .kpi .vl{font-size:22px;font-weight:900;line-height:1.2}
+    .card{background:white;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);padding:14px;margin-bottom:12px;border-left:4px solid #388E3C}
+    .tw{overflow-x:auto;border-radius:6px;border:1px solid #A5D6A7}
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    thead th{background:#388E3C;color:white;padding:8px;text-align:left;font-size:11px;white-space:nowrap;position:sticky;top:0}
+    tbody tr:nth-child(even){background:#FAFAFA}tbody tr:hover{background:#C8E6C9}
+    td{padding:6px 8px;border-bottom:1px solid #E8F5E9;vertical-align:middle}
+    .c{text-align:center}
+    .bp{background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 5px;font-weight:700;font-size:11px}
+    .ba{background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:1px 5px;font-weight:700;font-size:11px}
+    .bt{background:#FFF9C4;color:#E65100;border-radius:4px;padding:1px 5px;font-weight:700;font-size:11px}
+    .pill{padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;display:inline-block}
+    .gp{background:#C8E6C9;color:#1B5E20}
+    .note{font-size:11px;color:#546E7A;padding:8px 12px;background:white;border-radius:6px;border-left:4px solid #1565C0;margin-top:10px}
+  </style></head><body>
+  <div class="hdr">
+    <div class="logo">EAN</div>
+    <div><h1>Informe del Curso · COMUNICACIÓN DIGITAL 360 MARKETING</h1>
+    <p>AFPN0093 · S1G1 2026-001 · Prof. Jorge Hugo Pérez Gaona · 6 sesión(es) registrada(s)</p></div>
+    <div class="ts">📅 28/3/2026, 3:56:18 p. m.</div>
   </div>
-  <div class="ts" id="ts-updated">Cargando...</div>
-</div>
-
-<div class="tabs">
-  <button class="tab-btn active" onclick="showTab('att',this)">📋 Consolidado Asistencia</button>
-  <button class="tab-btn" onclick="showTab('notas',this)">🏅 Consolidado Notas</button>
-</div>
-
-<!-- TAB ASISTENCIA -->
-<div class="tab-pane active" id="pane-att">
-  <div class="kpis" id="kpi-att"></div>
-  <div class="card">
-    <div class="card-title">Asistencia por estudiante · Sesiones registradas</div>
-    <div class="tw" id="tbl-att"></div>
+  <div class="tabs">
+    <button class="tab active" onclick="sw(0,this)">📋 Asistencia</button>
+    <button class="tab" onclick="sw(1,this)">🏅 Notas</button>
   </div>
-  <div class="note">🔴 Riesgo = 3+ fallas &nbsp;·&nbsp; ⚠️ Atención = 1-2 fallas &nbsp;·&nbsp; ✅ En regla = 0 fallas</div>
-</div>
 
-<!-- TAB NOTAS -->
-<div class="tab-pane" id="pane-notas">
-  <div class="kpis" id="kpi-notas"></div>
-  <div class="card">
-    <div class="card-title">Notas por estudiante</div>
-    <div class="tw" id="tbl-notas"></div>
+  <!-- PANE ASISTENCIA -->
+  <div class="pane active">
+    <div class="kpis">
+      <div class="kpi"><div class="lb">Sesiones</div><div class="vl" style="color:#1565C0">6</div></div><div class="kpi"><div class="lb">% Asist. prom.</div><div class="vl" style="color:#2E7D32">63%</div></div><div class="kpi"><div class="lb">Total fallas</div><div class="vl" style="color:#424242">79</div></div><div class="kpi"><div class="lb">⚠️ Atención</div><div class="vl" style="color:#F57F17">14</div></div><div class="kpi"><div class="lb">🔴 Riesgo</div><div class="vl" style="color:#C62828">17</div></div><div class="kpi"><div class="lb">✅ Sin fallas</div><div class="vl" style="color:#2E7D32">5</div></div>
+    </div>
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;color:#1B5E20;margin-bottom:10px">Asistencia por estudiante · Sesiones: 2026-03-10 · 2026-03-12 · 2026-03-17 · 2026-03-19 · 2026-03-24 · 2026-03-26</div>
+      <div class="tw"><table><thead><tr>
+        <th>#</th><th>Estudiante</th><th>Grupo</th><th class="num" style="font-size:10px" title="Primera entrega — Sustentación Diagnóstica">Semana <br><span style="opacity:.8;font-weight:400">03-10</span></th><th class="num" style="font-size:10px" title="">Semana <br><span style="opacity:.8;font-weight:400">03-12</span></th><th class="num" style="font-size:10px" title="">Semana <br><span style="opacity:.8;font-weight:400">03-17</span></th><th class="num" style="font-size:10px" title="">Semana <br><span style="opacity:.8;font-weight:400">03-19</span></th><th class="num" style="font-size:10px" title="">Semana <br><span style="opacity:.8;font-weight:400">03-24</span></th><th class="num" style="font-size:10px" title="">Semana <br><span style="opacity:.8;font-weight:400">03-26</span></th>
+        <th class="c">✅ Pres.</th><th class="c">❌ Fallas</th><th class="c">% Asist.</th><th class="c">Estado</th>
+      </tr></thead><tbody><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">1</td>
+      <td><b>Tinoco Ruiz Sofía</b><br><small style="color:#90A4AE">CC 1000077541</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">4</td>
+      <td class="c" style="font-weight:800;color:#E65100">2</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:67%"></div></div> <span style="font-size:11px">67%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">2</td>
+      <td><b>Rondón Leguizamo Guillermo Andrés</b><br><small style="color:#90A4AE">CC 1000350624</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">4</td>
+      <td class="c" style="font-weight:800;color:#E65100">2</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:67%"></div></div> <span style="font-size:11px">67%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">3</td>
+      <td><b>Villa Fajardo Zarith Juliana</b><br><small style="color:#90A4AE">CC 1011100245</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">4</td>
+      <td><b>Muriel Salgado Juan Sebastián</b><br><small style="color:#90A4AE">CC 1013106028</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">5</td>
+      <td><b>Cifuentes Martínez Camila Alejandra</b><br><small style="color:#90A4AE">CC 1013256390</small></td>
+      <td><span class="pill gp">Nara Nails</span></td>
+      <td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">2</td>
+      <td class="c" style="font-weight:800;color:#C62828">4</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:33%"></div></div> <span style="font-size:11px">33%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">6</td>
+      <td><b>Garzón Moya Juan Jerónimo</b><br><small style="color:#90A4AE">CC 1013263957</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">7</td>
+      <td><b>Mahecha Lázaro Sebastián</b><br><small style="color:#90A4AE">CC 1014861582</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">6</td>
+      <td class="c" style="font-weight:800;color:#2E7D32">0</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#2E7D32;width:100%"></div></div> <span style="font-size:11px">100%</span></td>
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">8</td>
+      <td><b>Hernández Muñoz María José</b><br><small style="color:#90A4AE">CC 1014997827</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bt">T</span></td><td class="c"><span class="bt">T</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">6</td>
+      <td class="c" style="font-weight:800;color:#2E7D32">0</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#2E7D32;width:100%"></div></div> <span style="font-size:11px">100%</span></td>
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">9</td>
+      <td><b>Lozano Álvarez Yesenia Sophia</b><br><small style="color:#90A4AE">CC 1016596401</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">4</td>
+      <td class="c" style="font-weight:800;color:#E65100">2</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:67%"></div></div> <span style="font-size:11px">67%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">10</td>
+      <td><b>Pérez Cortés María José</b><br><small style="color:#90A4AE">CC 1016951985</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">4</td>
+      <td class="c" style="font-weight:800;color:#E65100">2</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:67%"></div></div> <span style="font-size:11px">67%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">11</td>
+      <td><b>Norato Burgos Valerie</b><br><small style="color:#90A4AE">CC 1019764949</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      <td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">12</td>
+      <td><b>Romero Rojas Juliana Sofía</b><br><small style="color:#90A4AE">CC 1019843108</small></td>
+      <td><span class="pill gp">Nara Nails</span></td>
+      <td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">2</td>
+      <td class="c" style="font-weight:800;color:#C62828">4</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:33%"></div></div> <span style="font-size:11px">33%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">13</td>
+      <td><b>Martínez Martínez Laura Juliana</b><br><small style="color:#90A4AE">CC 1021397707</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bt">T</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">5</td>
+      <td class="c" style="font-weight:800;color:#E65100">1</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#F57F17;width:83%"></div></div> <span style="font-size:11px">83%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">14</td>
+      <td><b>Riaño Pachón Laura Andrea</b><br><small style="color:#90A4AE">CC 1021675662</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">15</td>
+      <td><b>Rodríguez Salcedo Karol Valentina</b><br><small style="color:#90A4AE">CC 1023369961</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">16</td>
+      <td><b>Segura Rojas Ninny Carolina</b><br><small style="color:#90A4AE">CC 1023375110</small></td>
+      <td><span class="pill gp">Nara Nails</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">5</td>
+      <td class="c" style="font-weight:800;color:#E65100">1</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#F57F17;width:83%"></div></div> <span style="font-size:11px">83%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">17</td>
+      <td><b>Trujillo Ríos Andrea Catalina</b><br><small style="color:#90A4AE">CC 1023891376</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bt">T</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bt">T</span></td><td class="c"><span class="bt">T</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">5</td>
+      <td class="c" style="font-weight:800;color:#E65100">1</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#F57F17;width:83%"></div></div> <span style="font-size:11px">83%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">18</td>
+      <td><b>Acevedo Caro Juan Diego</b><br><small style="color:#90A4AE">CC 1027151839</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">6</td>
+      <td class="c" style="font-weight:800;color:#2E7D32">0</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#2E7D32;width:100%"></div></div> <span style="font-size:11px">100%</span></td>
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">19</td>
+      <td><b>Galvis Triana Michel Fernanda</b><br><small style="color:#90A4AE">CC 1028663002</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">4</td>
+      <td class="c" style="font-weight:800;color:#E65100">2</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:67%"></div></div> <span style="font-size:11px">67%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">20</td>
+      <td><b>Aragón Calderón Verónica Ester</b><br><small style="color:#90A4AE">CC 1028863347</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">21</td>
+      <td><b>Castillo Vargas Karen Stefanny</b><br><small style="color:#90A4AE">CC 1029143351</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bt">T</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">22</td>
+      <td><b>Fernández Rueda Laura Natalia</b><br><small style="color:#90A4AE">CC 1029144591</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">23</td>
+      <td><b>Chica Vega Sara Alejandra</b><br><small style="color:#90A4AE">CC 1029660441</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      <td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="c" style="font-weight:800;color:#C62828">5</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:17%"></div></div> <span style="font-size:11px">17%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">24</td>
+      <td><b>Aunta Munar Danna Valentina</b><br><small style="color:#90A4AE">CC 1030557501</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">25</td>
+      <td><b>Camacho Rico Juan Esteban</b><br><small style="color:#90A4AE">CC 1031541266</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bt">T</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">6</td>
+      <td class="c" style="font-weight:800;color:#2E7D32">0</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#2E7D32;width:100%"></div></div> <span style="font-size:11px">100%</span></td>
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">26</td>
+      <td><b>Ángel Rojas Nashua Silvana</b><br><small style="color:#90A4AE">CC 1031805029</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bt">T</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">4</td>
+      <td class="c" style="font-weight:800;color:#E65100">2</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:67%"></div></div> <span style="font-size:11px">67%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">27</td>
+      <td><b>Vila Peña Laura Sofía</b><br><small style="color:#90A4AE">CC 1032877570</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">6</td>
+      <td class="c" style="font-weight:800;color:#2E7D32">0</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#2E7D32;width:100%"></div></div> <span style="font-size:11px">100%</span></td>
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">28</td>
+      <td><b>Dávila González Sara Lucía</b><br><small style="color:#90A4AE">CC 1033102053</small></td>
+      <td><span class="pill gp">Sin grupo</span></td>
+      <td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">2</td>
+      <td class="c" style="font-weight:800;color:#C62828">4</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:33%"></div></div> <span style="font-size:11px">33%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">29</td>
+      <td><b>Lopera Cristiano Valentina</b><br><small style="color:#90A4AE">CC 1033102176</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">30</td>
+      <td><b>Brand Mendieta Gabriela</b><br><small style="color:#90A4AE">CC 1033710696</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bt">T</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bt">T</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">5</td>
+      <td class="c" style="font-weight:800;color:#E65100">1</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#F57F17;width:83%"></div></div> <span style="font-size:11px">83%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">31</td>
+      <td><b>Díaz Moreno Juliana</b><br><small style="color:#90A4AE">CC 1034577536</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      <td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">32</td>
+      <td><b>Urrea Ramírez Mariana</b><br><small style="color:#90A4AE">CC 1040874338</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      <td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">4</td>
+      <td class="c" style="font-weight:800;color:#E65100">2</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:67%"></div></div> <span style="font-size:11px">67%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">33</td>
+      <td><b>Canastero Venegas Isabel Sofía</b><br><small style="color:#90A4AE">CC 1070007994</small></td>
+      <td><span class="pill gp">Nara Nails</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">5</td>
+      <td class="c" style="font-weight:800;color:#E65100">1</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#F57F17;width:83%"></div></div> <span style="font-size:11px">83%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">34</td>
+      <td><b>Laverde Vargas Sara Valentina</b><br><small style="color:#90A4AE">CC 1141317881</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">4</td>
+      <td class="c" style="font-weight:800;color:#E65100">2</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:67%"></div></div> <span style="font-size:11px">67%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">35</td>
+      <td><b>Castelblanco Moreno Paula Alejandra</b><br><small style="color:#90A4AE">CC 1013108778</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      <td class="c"><span class="bp">P</span></td><td class="c"><span class="bt">T</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">4</td>
+      <td class="c" style="font-weight:800;color:#E65100">2</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:67%"></div></div> <span style="font-size:11px">67%</span></td>
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">36</td>
+      <td><b>Niño Díaz Lucas Eduardo</b><br><small style="color:#90A4AE">CC 1127242102</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      <td class="c"><span class="ba">A</span></td><td class="c"><span class="bt">T</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td><td class="c"><span class="bp">P</span></td><td class="c"><span class="ba">A</span></td>
+      <td class="c" style="font-weight:700;color:#2E7D32">3</td>
+      <td class="c" style="font-weight:800;color:#C62828">3</td>
+      <td class="c"><div style="background:#E0E0E0;border-radius:3px;height:5px;width:50px;display:inline-block;vertical-align:middle"><div style="height:100%;border-radius:3px;background:#C62828;width:50%"></div></div> <span style="font-size:11px">50%</span></td>
+      <td class="c"><span class="pill" style="background:#FFEBEE;color:#C62828">🔴 Riesgo</span></td>
+    </tr></tbody></table></div>
+    </div>
+    <div class="note"><b>Leyenda:</b> <span class="bp">P</span> Presente &nbsp;<span class="ba">A</span> Ausente &nbsp;<span class="bt">T</span> Tardanza &nbsp;|&nbsp; 🔴 Riesgo=3+ fallas · ⚠️ Atención=1-2 · ✅ En regla=0</div>
   </div>
-  <div class="note">Calificación mínima aprobatoria EAN: <b>3.0</b> &nbsp;·&nbsp; 🟢 Alto ≥4.0 &nbsp;·&nbsp; ✅ Aprobado 3.0–3.9 &nbsp;·&nbsp; 🔴 Riesgo &lt;3.0</div>
-</div>
 
-<script>
-// ── DATOS EMBEBIDOS ──────────────────────────────────────────────────
-const STUDENTS = [
-  {id:"1000077541", name:"Tinoco Ruiz Sofía"},
-  {id:"1000350624", name:"Rondón Leguizamo Guillermo Andrés"},
-  {id:"1011100245", name:"Villa Fajardo Zarith Juliana"},
-  {id:"1013106028", name:"Muriel Salgado Juan Sebastián"},
-  {id:"1013256390", name:"Cifuentes Martínez Camila Alejandra"},
-  {id:"1013263957", name:"Garzón Moya Juan Jerónimo"},
-  {id:"1014861582", name:"Mahecha Lázaro Sebastián"},
-  {id:"1014997827", name:"Hernández Muñoz María José"},
-  {id:"1016596401", name:"Lozano Álvarez Yesenia Sophia"},
-  {id:"1016951985", name:"Pérez Cortés María José"},
-  {id:"1019764949", name:"Norato Burgos Valerie"},
-  {id:"1019843108", name:"Romero Rojas Juliana Sofía"},
-  {id:"1021397707", name:"Martínez Martínez Laura Juliana"},
-  {id:"1021675662", name:"Riaño Pachón Laura Andrea"},
-  {id:"1023369961", name:"Rodríguez Salcedo Karol Valentina"},
-  {id:"1023375110", name:"Segura Rojas Ninny Carolina"},
-  {id:"1023891376", name:"Trujillo Ríos Andrea Catalina"},
-  {id:"1027151839", name:"Acevedo Caro Juan Diego"},
-  {id:"1028663002", name:"Galvis Triana Michel Fernanda"},
-  {id:"1028863347", name:"Aragón Calderón Verónica Ester"},
-  {id:"1029143351", name:"Castillo Vargas Karen Stefanny"},
-  {id:"1029144591", name:"Fernández Rueda Laura Natalia"},
-  {id:"1029660441", name:"Chica Vega Sara Alejandra"},
-  {id:"1030557501", name:"Aunta Munar Danna Valentina"},
-  {id:"1031541266", name:"Camacho Rico Juan Esteban"},
-  {id:"1031805029", name:"Ángel Rojas Nashua Silvana"},
-  {id:"1032877570", name:"Vila Peña Laura Sofía"},
-  {id:"1033102053", name:"Dávila González Sara Lucía"},
-  {id:"1033102176", name:"Lopera Cristiano Valentina"},
-  {id:"1033710696", name:"Brand Mendieta Gabriela"},
-  {id:"1034577536", name:"Díaz Moreno Juliana"},
-  {id:"1040874338", name:"Urrea Ramírez Mariana"},
-  {id:"1070007994", name:"Canastero Venegas Isabel Sofía"},
-  {id:"1141317881", name:"Laverde Vargas Sara Valentina"},
-  {id:"1013108778", name:"Castelblanco Moreno Paula Alejandra"},
-  {id:"1127242102", name:"Niño Díaz Lucas Eduardo"}
-];
+  <!-- PANE NOTAS -->
+  <div class="pane">
+    <div class="kpis">
+      <div class="kpi"><div class="lb">Promedio general</div><div class="vl" style="color:#2E7D32">—</div></div><div class="kpi"><div class="lb">Actividades</div><div class="vl" style="color:#1565C0">0</div></div><div class="kpi"><div class="lb">✅ Aprobados</div><div class="vl" style="color:#2E7D32">0</div></div><div class="kpi"><div class="lb">🔴 En riesgo</div><div class="vl" style="color:#C62828">0</div></div><div class="kpi"><div class="lb">⬜ Sin nota</div><div class="vl" style="color:#546E7A">36</div></div>
+    </div>
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;color:#1B5E20;margin-bottom:10px">Notas por estudiante · 0 actividad(es)</div>
+      <div class="tw"><table><thead><tr>
+        <th>#</th><th>Estudiante</th><th>Grupo</th>
+        
+        <th class="c">Sustentación</th><th class="c">Asistencia</th><th class="c">Estado</th>
+      </tr></thead><tbody><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">1</td>
+      <td><b>Tinoco Ruiz Sofía</b><br><small style="color:#90A4AE">CC 1000077541</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">17/20 Excelente</span></td><td class="c"><span style="color:#E65100;font-weight:700">67%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">2</td>
+      <td><b>Rondón Leguizamo Guillermo Andrés</b><br><small style="color:#90A4AE">CC 1000350624</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">17/20 Excelente</span></td><td class="c"><span style="color:#E65100;font-weight:700">67%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">3</td>
+      <td><b>Villa Fajardo Zarith Juliana</b><br><small style="color:#90A4AE">CC 1011100245</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">17/20 Excelente</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">4</td>
+      <td><b>Muriel Salgado Juan Sebastián</b><br><small style="color:#90A4AE">CC 1013106028</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">19/20 Excelente</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">5</td>
+      <td><b>Cifuentes Martínez Camila Alejandra</b><br><small style="color:#90A4AE">CC 1013256390</small></td>
+      <td><span class="pill gp">Nara Nails</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">11/20 Regular</span></td><td class="c"><span style="color:#C62828;font-weight:700">33%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">6</td>
+      <td><b>Garzón Moya Juan Jerónimo</b><br><small style="color:#90A4AE">CC 1013263957</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">12/20 Regular</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">7</td>
+      <td><b>Mahecha Lázaro Sebastián</b><br><small style="color:#90A4AE">CC 1014861582</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">19/20 Excelente</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">100%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">8</td>
+      <td><b>Hernández Muñoz María José</b><br><small style="color:#90A4AE">CC 1014997827</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">19/20 Excelente</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">100%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">9</td>
+      <td><b>Lozano Álvarez Yesenia Sophia</b><br><small style="color:#90A4AE">CC 1016596401</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">18/20 Excelente</span></td><td class="c"><span style="color:#E65100;font-weight:700">67%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">10</td>
+      <td><b>Pérez Cortés María José</b><br><small style="color:#90A4AE">CC 1016951985</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">17/20 Excelente</span></td><td class="c"><span style="color:#E65100;font-weight:700">67%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">11</td>
+      <td><b>Norato Burgos Valerie</b><br><small style="color:#90A4AE">CC 1019764949</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">18/20 Excelente</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">12</td>
+      <td><b>Romero Rojas Juliana Sofía</b><br><small style="color:#90A4AE">CC 1019843108</small></td>
+      <td><span class="pill gp">Nara Nails</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">11/20 Regular</span></td><td class="c"><span style="color:#C62828;font-weight:700">33%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">13</td>
+      <td><b>Martínez Martínez Laura Juliana</b><br><small style="color:#90A4AE">CC 1021397707</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">20/20 Excelente</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">83%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">14</td>
+      <td><b>Riaño Pachón Laura Andrea</b><br><small style="color:#90A4AE">CC 1021675662</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">19/20 Excelente</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">15</td>
+      <td><b>Rodríguez Salcedo Karol Valentina</b><br><small style="color:#90A4AE">CC 1023369961</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">20/20 Excelente</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">16</td>
+      <td><b>Segura Rojas Ninny Carolina</b><br><small style="color:#90A4AE">CC 1023375110</small></td>
+      <td><span class="pill gp">Nara Nails</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">11/20 Regular</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">83%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">17</td>
+      <td><b>Trujillo Ríos Andrea Catalina</b><br><small style="color:#90A4AE">CC 1023891376</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">19/20 Excelente</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">83%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">18</td>
+      <td><b>Acevedo Caro Juan Diego</b><br><small style="color:#90A4AE">CC 1027151839</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">19/20 Excelente</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">100%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">19</td>
+      <td><b>Galvis Triana Michel Fernanda</b><br><small style="color:#90A4AE">CC 1028663002</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">20/20 Excelente</span></td><td class="c"><span style="color:#E65100;font-weight:700">67%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">20</td>
+      <td><b>Aragón Calderón Verónica Ester</b><br><small style="color:#90A4AE">CC 1028863347</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">12/20 Regular</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">21</td>
+      <td><b>Castillo Vargas Karen Stefanny</b><br><small style="color:#90A4AE">CC 1029143351</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">18/20 Excelente</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">22</td>
+      <td><b>Fernández Rueda Laura Natalia</b><br><small style="color:#90A4AE">CC 1029144591</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">19/20 Excelente</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">23</td>
+      <td><b>Chica Vega Sara Alejandra</b><br><small style="color:#90A4AE">CC 1029660441</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">18/20 Excelente</span></td><td class="c"><span style="color:#C62828;font-weight:700">17%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">24</td>
+      <td><b>Aunta Munar Danna Valentina</b><br><small style="color:#90A4AE">CC 1030557501</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">12/20 Regular</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">25</td>
+      <td><b>Camacho Rico Juan Esteban</b><br><small style="color:#90A4AE">CC 1031541266</small></td>
+      <td><span class="pill gp">Yoga Serena</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">18/20 Excelente</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">100%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">26</td>
+      <td><b>Ángel Rojas Nashua Silvana</b><br><small style="color:#90A4AE">CC 1031805029</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">20/20 Excelente</span></td><td class="c"><span style="color:#E65100;font-weight:700">67%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">27</td>
+      <td><b>Vila Peña Laura Sofía</b><br><small style="color:#90A4AE">CC 1032877570</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">19/20 Excelente</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">100%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">28</td>
+      <td><b>Dávila González Sara Lucía</b><br><small style="color:#90A4AE">CC 1033102053</small></td>
+      <td><span class="pill gp">Sin grupo</span></td>
+      
+      <td class="c"><span style="color:#CFD8DC">—</span></td><td class="c"><span style="color:#C62828;font-weight:700">33%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">29</td>
+      <td><b>Lopera Cristiano Valentina</b><br><small style="color:#90A4AE">CC 1033102176</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">12/20 Regular</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">30</td>
+      <td><b>Brand Mendieta Gabriela</b><br><small style="color:#90A4AE">CC 1033710696</small></td>
+      <td><span class="pill gp">Aura Studio</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">19/20 Excelente</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">83%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">31</td>
+      <td><b>Díaz Moreno Juliana</b><br><small style="color:#90A4AE">CC 1034577536</small></td>
+      <td><span class="pill gp">Armonía Lashes</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF9C4;color:#F57F17">⏳ Pendiente</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">32</td>
+      <td><b>Urrea Ramírez Mariana</b><br><small style="color:#90A4AE">CC 1040874338</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">17/20 Excelente</span></td><td class="c"><span style="color:#E65100;font-weight:700">67%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">33</td>
+      <td><b>Canastero Venegas Isabel Sofía</b><br><small style="color:#90A4AE">CC 1070007994</small></td>
+      <td><span class="pill gp">Nara Nails</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF3E0;color:#E65100">11/20 Regular</span></td><td class="c"><span style="color:#2E7D32;font-weight:700">83%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">34</td>
+      <td><b>Laverde Vargas Sara Valentina</b><br><small style="color:#90A4AE">CC 1141317881</small></td>
+      <td><span class="pill gp">Renacer Vital</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">20/20 Excelente</span></td><td class="c"><span style="color:#E65100;font-weight:700">67%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">35</td>
+      <td><b>Castelblanco Moreno Paula Alejandra</b><br><small style="color:#90A4AE">CC 1013108778</small></td>
+      <td><span class="pill gp">Canta y Come</span></td>
+      
+      <td class="c"><span class="pill" style="background:#E8F5E9;color:#1B5E20">17/20 Excelente</span></td><td class="c"><span style="color:#E65100;font-weight:700">67%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr><tr>
+      <td class="c" style="color:#90A4AE;font-size:11px">36</td>
+      <td><b>Niño Díaz Lucas Eduardo</b><br><small style="color:#90A4AE">CC 1127242102</small></td>
+      <td><span class="pill gp">Axis</span></td>
+      
+      <td class="c"><span class="pill" style="background:#FFF9C4;color:#F57F17">⏳ Pendiente</span></td><td class="c"><span style="color:#C62828;font-weight:700">50%</span></td><td class="c"><span class="pill" style="background:#ECEFF1;color:#546E7A">⬜ Sin nota</span></td>
+    </tr></tbody></table></div>
+    </div>
+    <div class="note">Calificación mínima aprobatoria EAN: <b>3.0</b> &nbsp;|&nbsp; 🟢 Alto ≥4.0 · ✅ Aprobado 3.0–3.9 · 🔴 Riesgo &lt;3.0</div>
+  </div>
 
-const GROUPS = {
-  "g_01":{id:"g_01",name:"Yoga Serena",   members:["1016596401","1029143351","1031541266","1029660441","1019764949"]},
-  "g_02":{id:"g_02",name:"Renacer Vital", members:["1031805029","1021397707","1028663002","1141317881","1023369961"]},
-  "g_03":{id:"g_03",name:"Aura Studio",   members:["1033710696","1023891376","1014997827","1029144591","1021675662"]},
-  "g_04":{id:"g_04",name:"Canta y Come",  members:["1000077541","1016951985","1011100245","1000350624","1040874338","1013108778"]},
-  "g_05":{id:"g_05",name:"Axis",          members:["1013106028","1032877570","1014861582","1027151839","1127242102"]},
-  "g_06":{id:"g_06",name:"Nara Nails",    members:["1023375110","1070007994","1013256390","1019843108"]},
-  "g_07":{id:"g_07",name:"Armonía Lashes",members:["1028863347","1030557501","1033102176","1013263957","1034577536"]}
-};
-
-const SUST = {
-  "g_01":{total:18,label:"Excelente 🌟",obs:"LIDER: JUAN CAMACHO"},
-  "g_02":{total:20,label:"Excelente 🌟",obs:""},
-  "g_03":{total:19,label:"Excelente 🌟",obs:"LIDER: ANDREA RIAÑO"},
-  "g_04":{total:17,label:"Bueno 👍",    obs:"LIDER: Paula Castelblanco"},
-  "g_05":{total:19,label:"Excelente 🌟",obs:"LIDER: JUAN MURIEL | ⚠️ Lucas Niño Díaz: PENDIENTE"},
-  "g_06":{total:11,label:"Regular ⚠️",  obs:"LIDER: CAMILA"},
-  "g_07":{total:12,label:"Regular ⚠️",  obs:"LIDER: JERONIMO GARZON | ⚠️ Juliana Díaz: SIN NOTA"}
-};
-
-const SUST_EXCL = ["1127242102","1034577536"];
-
-const ATT_SESSIONS = {
-  "2026-03-10":{
-    date:"2026-03-10", week:"Semana 1",
-    topic:"Primera entrega — Sustentación Diagnóstica",
-    records:{
-      "1000077541":{status:"P"},"1000350624":{status:"P"},"1011100245":{status:"P"},
-      "1013106028":{status:"P"},"1013256390":{status:"A",obs:"Falla — ausente sin justificación"},
-      "1013263957":{status:"P"},"1014861582":{status:"P"},"1014997827":{status:"P"},
-      "1016596401":{status:"P"},"1016951985":{status:"P"},
-      "1019764949":{status:"A",obs:"Falla — ausente sin justificación"},
-      "1019843108":{status:"A",obs:"Falla — ausente sin justificación"},
-      "1021397707":{status:"P"},"1021675662":{status:"P"},"1023369961":{status:"P"},
-      "1023375110":{status:"P"},"1023891376":{status:"P"},"1027151839":{status:"P"},
-      "1028663002":{status:"P"},"1028863347":{status:"P"},"1029143351":{status:"P"},
-      "1029144591":{status:"P"},
-      "1029660441":{status:"A",obs:"Falla — ausente sin justificación"},
-      "1030557501":{status:"P"},"1031541266":{status:"P"},"1031805029":{status:"P"},
-      "1032877570":{status:"P"},
-      "1033102053":{status:"A",obs:"Falla — ausente sin justificación"},
-      "1033102176":{status:"P"},"1033710696":{status:"P"},
-      "1034577536":{status:"A",obs:"No se presentó a la sustentación — sin justificación"},
-      "1040874338":{status:"A",obs:"Falla — ausente sin justificación"},
-      "1070007994":{status:"P"},"1141317881":{status:"P"},"1013108778":{status:"P"},
-      "1127242102":{status:"A",obs:"Falla — no asistió a clase ni a sustentación, sin incapacidad"}
+  <script>
+    function sw(i,btn){
+      document.querySelectorAll('.pane').forEach((p,j)=>p.classList.toggle('active',j===i));
+      document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
     }
-  }
-};
-
-// ── UTILS ─────────────────────────────────────────────────────────────
-function showTab(id, btn){
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('pane-'+id).classList.add('active');
-  btn.classList.add('active');
-}
-
-// ── RENDER ASISTENCIA ─────────────────────────────────────────────────
-function renderAtt(){
-  const dates = Object.keys(ATT_SESSIONS).sort();
-  const stats = STUDENTS.map(s=>{
-    let pres=0,fallas=0;
-    const cells=dates.map(d=>{
-      const r=(ATT_SESSIONS[d].records||{})[s.id];
-      if(!r)return null;
-      if(r.status==='P'){pres++;return 'P';}
-      if(r.status==='T'){pres++;return 'T';}
-      if(r.status==='A'){fallas++;return 'A';}
-      return null;
-    });
-    const total=pres+fallas,pct=total>0?Math.round(pres/total*100):100;
-    const grp=Object.values(GROUPS).find(g=>g.members.includes(s.id));
-    return {s,pres,fallas,pct,cells,grp};
-  });
-
-  const riesgo=stats.filter(x=>x.fallas>=3).length;
-  const aten=stats.filter(x=>x.fallas>=1&&x.fallas<3).length;
-  const ok=stats.filter(x=>x.fallas===0).length;
-  const avgPct=Math.round(stats.reduce((a,x)=>a+x.pct,0)/stats.length);
-  const totF=stats.reduce((a,x)=>a+x.fallas,0);
-
-  document.getElementById('kpi-att').innerHTML=[
-    {lbl:'Sesiones registradas',val:dates.length,c:'#1565C0'},
-    {lbl:'% Asistencia promedio',val:avgPct+'%',c:'#2E7D32'},
-    {lbl:'Total fallas acum.',val:totF,c:'#424242'},
-    {lbl:'⚠️ Atención (1-2)',val:aten,c:'#F57F17'},
-    {lbl:'🔴 Riesgo (3+)',val:riesgo,c:'#C62828'},
-    {lbl:'✅ Sin fallas',val:ok,c:'#2E7D32'},
-  ].map(k=>`<div class="kpi" style="border-top-color:${k.c}">
-    <div class="lbl">${k.lbl}</div>
-    <div class="val" style="color:${k.c}">${k.val}</div>
-  </div>`).join('');
-
-  const sesTh=dates.map((d,i)=>{
-    const s=ATT_SESSIONS[d];
-    return `<th class="num" title="${s.topic||''}" style="font-size:10px;cursor:help">${s.week||'S'+(i+1)}<br><span style="font-weight:400;opacity:.85">${d.slice(5)}</span></th>`;
-  }).join('');
-
-  let rows='';
-  stats.forEach(({s,pres,fallas,pct,cells,grp},i)=>{
-    const eClr=fallas>=3?'#FFEBEE;color:#C62828':fallas>=1?'#FFF3E0;color:#E65100':'#E8F5E9;color:#1B5E20';
-    const eTxt=fallas>=3?'🔴 Riesgo':fallas>=1?'⚠️ Atención':'✅ En regla';
-    const fClr=fallas>=3?'color:#C62828;font-weight:900':fallas>=1?'color:#E65100;font-weight:800':'color:#2E7D32;font-weight:700';
-    const sc=cells.map(c=>{
-      if(c==='P')return`<td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:2px 5px;font-size:11px;font-weight:700">P</span></td>`;
-      if(c==='A')return`<td class="num"><span style="background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:2px 5px;font-size:11px;font-weight:700">A</span></td>`;
-      if(c==='T')return`<td class="num"><span style="background:#FFF9C4;color:#E65100;border-radius:4px;padding:2px 5px;font-size:11px;font-weight:700">T</span></td>`;
-      return`<td class="num" style="color:#CFD8DC">—</td>`;
-    }).join('');
-    const barC=pct<70?'#C62828':pct<85?'#F57F17':'#2E7D32';
-    rows+=`<tr>
-      <td class="num" style="color:#90A4AE;font-size:11px">${i+1}</td>
-      <td><b>${s.name}</b><br><span style="font-size:10px;color:#90A4AE">CC ${s.id}</span></td>
-      <td><span class="pill" style="background:var(--pale);color:var(--g)">${grp?grp.name:'Sin grupo'}</span></td>
-      ${sc}
-      <td class="num" style="font-weight:700;color:#2E7D32">${pres}</td>
-      <td class="num" style="${fClr}">${fallas}</td>
-      <td class="num">
-        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:56px;display:inline-block;vertical-align:middle">
-          <div style="height:100%;border-radius:4px;background:${barC};width:${pct}%"></div>
-        </div>
-        <span style="font-size:11px;margin-left:4px">${pct}%</span>
-      </td>
-      <td class="num"><span class="pill" style="background:${eClr}">${eTxt}</span></td>
-    </tr>`;
-  });
-
-  document.getElementById('tbl-att').innerHTML=`<table>
-    <thead><tr><th>#</th><th>Estudiante</th><th>Grupo</th>${sesTh}
-      <th class="num">✅ Pres.</th><th class="num">❌ Fallas</th>
-      <th class="num">% Asist.</th><th class="num">Estado</th>
-    </tr></thead><tbody>${rows}</tbody></table>`;
-}
-
-// ── RENDER NOTAS ──────────────────────────────────────────────────────
-function renderNotas(){
-  const dates=Object.keys(ATT_SESSIONS).sort();
-  const data=STUDENTS.map(s=>{
-    const excl=SUST_EXCL.includes(s.id);
-    const grp=Object.values(GROUPS).find(g=>g.members.includes(s.id));
-    let sust=null;
-    if(!excl&&grp&&SUST[grp.id]) sust=SUST[grp.id].total;
-    const pres=dates.filter(d=>{const r=(ATT_SESSIONS[d].records||{})[s.id];return r&&(r.status==='P'||r.status==='T');}).length;
-    const attPct=dates.length>0?Math.round(pres/dates.length*100):null;
-    return {s,sust,sustPend:excl,grp,attPct};
-  });
-
-  document.getElementById('kpi-notas').innerHTML=[
-    {lbl:'Total estudiantes',val:STUDENTS.length,c:'#1565C0'},
-    {lbl:'Grupos',val:Object.keys(GROUPS).length,c:'#2E7D32'},
-    {lbl:'Sustentaciones',val:Object.keys(SUST).length,c:'#388E3C'},
-    {lbl:'⏳ Pendientes sust.',val:SUST_EXCL.length,c:'#F57F17'},
-    {lbl:'Sin nota (activid.)',val:STUDENTS.length,c:'#546E7A'},
-  ].map(k=>`<div class="kpi" style="border-top-color:${k.c}">
-    <div class="lbl">${k.lbl}</div>
-    <div class="val" style="color:${k.c}">${k.val}</div>
-  </div>`).join('');
-
-  let rows='';
-  data.forEach(({s,sust,sustPend,grp,attPct},i)=>{
-    let sustHTML;
-    if(sustPend){
-      sustHTML=`<span class="pill" style="background:#FFF9C4;color:#F57F17">⏳ Pendiente</span>`;
-    } else if(sust!==null){
-      const sc=sust>=17?'background:#E8F5E9;color:#1B5E20':sust>=13?'background:#E3F2FD;color:#1565C0':sust>=9?'background:#FFF3E0;color:#E65100':'background:#FFEBEE;color:#C62828';
-      const sl=sust>=17?'Excelente':sust>=13?'Bueno':sust>=9?'Regular':'Insuficiente';
-      sustHTML=`<span class="pill" style="${sc}">${sust}/20 ${sl}</span>`;
-    } else {
-      sustHTML=`<span style="color:#CFD8DC">—</span>`;
-    }
-    const attHTML=attPct!==null
-      ?`<span style="${attPct>=80?'color:#2E7D32':attPct>=60?'color:#E65100':'color:#C62828'};font-weight:700">${attPct}%</span>`
-      :`<span style="color:#CFD8DC">—</span>`;
-    rows+=`<tr>
-      <td class="num" style="color:#90A4AE;font-size:11px">${i+1}</td>
-      <td><b>${s.name}</b><br><span style="font-size:10px;color:#90A4AE">CC ${s.id}</span></td>
-      <td><span class="pill" style="background:var(--pale);color:var(--g)">${grp?grp.name:'Sin grupo'}</span></td>
-      <td class="num">${sustHTML}</td>
-      <td class="num">${attHTML}</td>
-    </tr>`;
-  });
-
-  document.getElementById('tbl-notas').innerHTML=`<table>
-    <thead><tr>
-      <th>#</th><th>Estudiante</th><th>Grupo</th>
-      <th class="num">Sustentación Diagnóstica</th>
-      <th class="num">Asistencia</th>
-    </tr></thead><tbody>${rows}</tbody></table>`;
-}
-
-// ── INIT ──────────────────────────────────────────────────────────────
-const now = new Date().toLocaleString('es-CO',{dateStyle:'medium',timeStyle:'short'});
-document.getElementById('ts-updated').textContent = 'Actualizado: ' + now;
-renderAtt();
-renderNotas();
-</script>
-</body>
-</html>
+  </script>
+</body></html>
