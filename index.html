@@ -1,688 +1,520 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Informe Consolidado · Asistencia & Notas · COMUNICACIÓN DIGITAL 360</title>
-<style>
-  :root {
-    --ean-dark:   #1B5E20;
-    --ean-mid:    #2E7D32;
-    --ean-main:   #388E3C;
-    --ean-light:  #66BB6A;
-    --ean-pale:   #C8E6C9;
-    --ean-accent: #92D050;
-    --ean-bg:     #F1F8E9;
-    --ean-white:  #FFFFFF;
-    --ean-gray:   #546E7A;
-    --ean-border: #A5D6A7;
-    --red:        #C62828;
-    --red-bg:     #FFEBEE;
-    --orange:     #E65100;
-    --orange-bg:  #FFF3E0;
-    --green:      #1B5E20;
-    --green-bg:   #E8F5E9;
-    --radius:     8px;
-    --shadow:     0 2px 10px rgba(0,0,0,0.10);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--ean-bg); color: #212121; font-size: 13px; }
-
-  /* HEADER */
-  .header {
-    background: linear-gradient(135deg, var(--ean-dark) 0%, var(--ean-main) 100%);
-    color: white; padding: 14px 24px;
-    display: flex; align-items: center; gap: 16px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-  }
-  .header .logo { font-size: 28px; font-weight: 900; color: var(--ean-accent); letter-spacing: -1px; min-width: 60px; }
-  .header .info h1 { font-size: 15px; font-weight: 700; line-height: 1.2; }
-  .header .info p  { font-size: 11px; opacity: 0.85; margin-top: 3px; }
-  .header .actions { margin-left: auto; display: flex; gap: 8px; }
-  .btn {
-    padding: 7px 14px; border-radius: 6px; border: none; cursor: pointer;
-    font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px;
-    transition: all .2s;
-  }
-  .btn-accent { background: var(--ean-accent); color: var(--ean-dark); }
-  .btn-accent:hover { background: #a8e063; }
-  .btn-outline { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.6); }
-  .btn-outline:hover { background: rgba(255,255,255,0.15); }
-
-  /* BODY PADDING */
-  .body { padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
-
-  /* BANNER fecha */
-  .date-banner {
-    background: white; border-radius: var(--radius); border-left: 5px solid var(--ean-accent);
-    padding: 10px 16px; margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
-    box-shadow: var(--shadow); font-size: 12px; color: var(--ean-gray);
-  }
-  .date-banner strong { color: var(--ean-dark); font-size: 13px; }
-
-  /* KPI CARDS */
-  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
-  .kpi {
-    background: white; border-radius: var(--radius); padding: 14px 16px;
-    box-shadow: var(--shadow); border-top: 4px solid var(--ean-main);
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  .kpi.red    { border-top-color: var(--red); }
-  .kpi.orange { border-top-color: #F57F17; }
-  .kpi.green  { border-top-color: var(--ean-main); }
-  .kpi.blue   { border-top-color: #1565C0; }
-  .kpi .label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--ean-gray); }
-  .kpi .value { font-size: 28px; font-weight: 900; color: var(--ean-dark); line-height: 1; }
-  .kpi.red .value    { color: var(--red); }
-  .kpi.orange .value { color: #F57F17; }
-  .kpi .sub   { font-size: 10px; color: #90A4AE; }
-
-  /* SESSIONS MINI-CARDS */
-  .sessions-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-  .sess-card {
-    background: white; border-radius: var(--radius); box-shadow: var(--shadow);
-    padding: 10px 14px; border-left: 4px solid var(--ean-main); min-width: 200px; flex: 1;
-  }
-  .sess-card .s-date { font-size: 11px; font-weight: 700; color: var(--ean-dark); }
-  .sess-card .s-week { font-size: 10px; color: var(--ean-gray); }
-  .sess-card .s-topic { font-size: 11px; margin-top: 3px; color: #424242; }
-  .sess-card .s-stats { margin-top: 6px; display: flex; gap: 8px; font-size: 11px; }
-  .badge-p { background: var(--green-bg); color: var(--green); padding: 2px 7px; border-radius: 10px; font-weight: 700; }
-  .badge-a { background: var(--red-bg);   color: var(--red);   padding: 2px 7px; border-radius: 10px; font-weight: 700; }
-  .badge-t { background: var(--orange-bg); color: var(--orange); padding: 2px 7px; border-radius: 10px; font-weight: 700; }
-
-  /* FILTER BAR */
-  .filter-bar {
-    background: white; border-radius: var(--radius); padding: 12px 16px;
-    box-shadow: var(--shadow); margin-bottom: 16px;
-    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
-  }
-  .filter-bar label { font-size: 11px; font-weight: 700; color: var(--ean-gray); text-transform: uppercase; }
-  .filter-bar select, .filter-bar input {
-    padding: 5px 9px; border: 1px solid var(--ean-border); border-radius: 5px;
-    font-size: 12px; outline: none; font-family: inherit;
-  }
-  .filter-bar select:focus, .filter-bar input:focus { border-color: var(--ean-main); }
-
-  /* TABLE */
-  .tbl-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); background: white; }
-  table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  thead tr th {
-    background: var(--ean-main); color: white; padding: 9px 8px;
-    text-align: left; font-size: 11px; white-space: nowrap;
-    position: sticky; top: 0; z-index: 2;
-  }
-  thead tr.subhead th { background: var(--ean-dark); font-size: 10px; padding: 5px 8px; }
-  tbody tr:nth-child(even) { background: #FAFAFA; }
-  tbody tr:hover { background: var(--ean-pale); }
-  td { padding: 7px 8px; border-bottom: 1px solid #E8F5E9; vertical-align: middle; }
-  td.num { text-align: center; }
-  th.num { text-align: center; }
-
-  /* STUDENT NAME */
-  .s-name { font-weight: 600; color: #212121; }
-  .s-id   { font-size: 10px; color: #90A4AE; }
-
-  /* GROUP PILL */
-  .grp-pill {
-    padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700;
-    white-space: nowrap; display: inline-block;
-    background: var(--ean-pale); color: var(--ean-dark);
-  }
-  .grp-pill.none { background: #ECEFF1; color: #90A4AE; }
-
-  /* SESSION CELL */
-  .att-p { background: #E8F5E9; color: #1B5E20; border-radius: 4px; padding: 2px 6px; font-weight: 700; font-size: 11px; }
-  .att-a { background: #FFEBEE; color: #C62828; border-radius: 4px; padding: 2px 6px; font-weight: 700; font-size: 11px; }
-  .att-t { background: #FFF3E0; color: #E65100; border-radius: 4px; padding: 2px 6px; font-weight: 700; font-size: 11px; }
-  .att-nd { color: #CFD8DC; font-size: 10px; }
-
-  /* COUNTERS */
-  .cnt-fallas { font-weight: 800; color: var(--red); font-size: 14px; }
-  .cnt-fallas.zero { color: var(--ean-main); }
-  .cnt-fallas.one  { color: #F57F17; }
-  .pct { font-size: 11px; }
-
-  /* SUST SCORE */
-  .sust-score {
-    padding: 3px 8px; border-radius: 5px; font-weight: 700; font-size: 11px;
-    white-space: nowrap; display: inline-block; text-align: center;
-  }
-  .sust-excelente { background: #E8F5E9; color: #1B5E20; }
-  .sust-bueno     { background: #E3F2FD; color: #1565C0; }
-  .sust-regular   { background: #FFF3E0; color: #E65100; }
-  .sust-insuf     { background: #FFEBEE; color: #C62828; }
-  .sust-pending   { background: #FFF9C4; color: #F57F17; }
-  .sust-none      { background: #ECEFF1; color: #90A4AE; }
-
-  /* ESTADO BADGE */
-  .estado {
-    padding: 3px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; display: inline-block;
-  }
-  .estado-ok     { background: var(--green-bg); color: var(--green); }
-  .estado-aten   { background: var(--orange-bg); color: var(--orange); }
-  .estado-riesgo { background: var(--red-bg); color: var(--red); }
-
-  /* PROGRESS BAR */
-  .pbar-wrap { background: #E0E0E0; border-radius: 4px; height: 6px; width: 70px; display: inline-block; vertical-align: middle; }
-  .pbar-fill { height: 100%; border-radius: 4px; background: var(--ean-main); }
-  .pbar-fill.low  { background: var(--red); }
-  .pbar-fill.med  { background: #F57F17; }
-
-  /* FOOTER NOTE */
-  .footer-note {
-    margin-top: 16px; padding: 10px 14px; background: white; border-radius: var(--radius);
-    border-left: 4px solid #1565C0; font-size: 11px; color: var(--ean-gray);
-    box-shadow: var(--shadow);
-  }
-  .footer-note strong { color: var(--ean-dark); }
-
-  /* PRINT */
-  @media print {
-    body { background: white; font-size: 11px; }
-    .header .actions, .filter-bar, .btn { display: none !important; }
-    .tbl-wrap { box-shadow: none; border: 1px solid #ccc; }
-    .body { padding: 10px; }
-  }
-
-  /* NO DATA */
-  .no-data { text-align: center; padding: 30px; color: var(--ean-gray); font-size: 13px; }
-</style>
-</head>
-<body>
-
-<!-- HEADER -->
-<div class="header">
-  <div class="logo">EAN</div>
-  <div class="info">
-    <h1>📋 Informe Consolidado · Asistencia &amp; Notas</h1>
-    <p>COMUNICACIÓN DIGITAL 360 MARKETING · AFPN0093 · S1G1 2026-001 · Martes 14:00–16:00 · Sala N412</p>
-  </div>
-  <div class="actions">
-    <button class="btn btn-outline" onclick="reloadData()">🔄 Actualizar</button>
-    <button class="btn btn-accent" onclick="window.print()">🖨️ Imprimir</button>
-  </div>
-</div>
-
-<div class="body">
-
-  <!-- DATE BANNER -->
-  <div class="date-banner">
-    📅 <strong id="lbl-fecha"></strong>
-    &nbsp;·&nbsp; Informe generado automáticamente desde el Dashboard EAN.
-    Los datos se leen del almacenamiento local del navegador y siempre reflejan el estado más reciente.
-  </div>
-
-  <!-- KPI CARDS -->
-  <div class="kpi-row" id="kpi-row"></div>
-
-  <!-- SESSION MINI-CARDS -->
-  <div class="sessions-row" id="sessions-row"></div>
-
-  <!-- FILTER BAR -->
-  <div class="filter-bar">
-    <label>Grupo:</label>
-    <select id="fil-grupo" onchange="renderTable()">
-      <option value="">Todos</option>
-    </select>
-    <label>Estado:</label>
-    <select id="fil-estado" onchange="renderTable()">
-      <option value="">Todos</option>
-      <option value="ok">✅ En regla</option>
-      <option value="aten">⚠️ Atención</option>
-      <option value="riesgo">🔴 Riesgo</option>
-    </select>
-    <label>Buscar:</label>
-    <input type="text" id="fil-buscar" placeholder="Nombre o cédula…" oninput="renderTable()" style="width:180px">
-    <span id="lbl-total" style="margin-left:auto;font-size:11px;color:var(--ean-gray);"></span>
-  </div>
-
-  <!-- MAIN TABLE -->
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th rowspan="2" class="num">#</th>
-          <th rowspan="2">Estudiante</th>
-          <th rowspan="2">Grupo</th>
-          <th id="th-sessions" colspan="1" style="text-align:center;background:var(--ean-dark)">Sesiones (últimas 5)</th>
-          <th rowspan="2" class="num">✅ Pres.</th>
-          <th rowspan="2" class="num">❌ Fallas</th>
-          <th rowspan="2" class="num">% Asist.</th>
-          <th rowspan="2" style="text-align:center">Sustentación</th>
-          <th rowspan="2" style="text-align:center">Estado</th>
-        </tr>
-        <tr id="th-session-cols"></tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
-
-  <!-- FOOTER NOTE -->
-  <div class="footer-note">
-    <strong>Leyenda:</strong>
-    <span class="att-p">P</span> Presente &nbsp;
-    <span class="att-a">A</span> Ausente/Falla &nbsp;
-    <span class="att-t">T</span> Tardanza &nbsp;
-    <span class="att-nd">—</span> Sin registro &nbsp;&nbsp;|&nbsp;&nbsp;
-    <strong>Riesgo:</strong>
-    <span class="estado estado-ok">✅ En regla</span> 0 fallas &nbsp;
-    <span class="estado estado-aten">⚠️ Atención</span> 1–2 fallas &nbsp;
-    <span class="estado estado-riesgo">🔴 Riesgo</span> 3+ fallas &nbsp;&nbsp;|&nbsp;&nbsp;
-    <strong>Sustentación:</strong> 17–20 Excelente · 13–16 Bueno · 9–12 Regular · 0–8 Insuficiente
-    &nbsp;&nbsp;|&nbsp;&nbsp; ⚠️ <em>Este informe se sincroniza automáticamente con el Dashboard EAN al abrirlos en el mismo navegador (Microsoft Edge).</em>
-  </div>
-
-</div><!-- /body -->
-
-<script>
-// ══════════════════════════════════════════════════
-//  DATOS BASE (mismos que el dashboard principal)
-// ══════════════════════════════════════════════════
-const STUDENTS = [
-  {id:"1000077541",  name:"Tinoco Ruiz Sofía"},
-  {id:"1000350624",  name:"Rondón Leguizamo Guillermo Andrés"},
-  {id:"1011100245",  name:"Villa Fajardo Zarith Juliana"},
-  {id:"1013106028",  name:"Muriel Salgado Juan Sebastián"},
-  {id:"1013256390",  name:"Cifuentes Martínez Camila Alejandra"},
-  {id:"1013263957",  name:"Garzón Moya Juan Jerónimo"},
-  {id:"1014861582",  name:"Mahecha Lázaro Sebastián"},
-  {id:"1014997827",  name:"Hernández Muñoz María José"},
-  {id:"1016596401",  name:"Lozano Álvarez Yesenia Sophia"},
-  {id:"1016951985",  name:"Pérez Cortés María José"},
-  {id:"1019764949",  name:"Norato Burgos Valerie"},
-  {id:"1019843108",  name:"Romero Rojas Juliana Sofía"},
-  {id:"1021397707",  name:"Martínez Martínez Laura Juliana"},
-  {id:"1021675662",  name:"Riaño Pachón Laura Andrea"},
-  {id:"1023369961",  name:"Rodríguez Salcedo Karol Valentina"},
-  {id:"1023375110",  name:"Segura Rojas Ninny Carolina"},
-  {id:"1023891376",  name:"Trujillo Ríos Andrea Catalina"},
-  {id:"1027151839",  name:"Acevedo Caro Juan Diego"},
-  {id:"1028663002",  name:"Galvis Triana Michel Fernanda"},
-  {id:"1028863347",  name:"Aragón Calderón Verónica Ester"},
-  {id:"1029143351",  name:"Castillo Vargas Karen Stefanny"},
-  {id:"1029144591",  name:"Fernández Rueda Laura Natalia"},
-  {id:"1029660441",  name:"Chica Vega Sara Alejandra"},
-  {id:"1030557501",  name:"Aunta Munar Danna Valentina"},
-  {id:"1031541266",  name:"Camacho Rico Juan Esteban"},
-  {id:"1031805029",  name:"Ángel Rojas Nashua Silvana"},
-  {id:"1032877570",  name:"Vila Peña Laura Sofía"},
-  {id:"1033102053",  name:"Dávila González Sara Lucía"},
-  {id:"1033102176",  name:"Lopera Cristiano Valentina"},
-  {id:"1033710696",  name:"Brand Mendieta Gabriela"},
-  {id:"1034577536",  name:"Díaz Moreno Juliana"},
-  {id:"1040874338",  name:"Urrea Ramírez Mariana"},
-  {id:"1070007994",  name:"Canastero Venegas Isabel Sofía"},
-  {id:"1141317881",  name:"Laverde Vargas Sara Valentina"},
-  {id:"1013108778",  name:"Castelblanco Moreno Paula Alejandra"},
-  {id:"1127242102",  name:"Niño Díaz Lucas Eduardo"}
-];
-
-const DEFAULT_GROUPS = {
-  "g_01": {id:"g_01", name:"Yoga Serena",    members:["1016596401","1029143351","1031541266","1029660441","1019764949"]},
-  "g_02": {id:"g_02", name:"Renacer Vital",  members:["1031805029","1021397707","1028663002","1141317881","1023369961"]},
-  "g_03": {id:"g_03", name:"Aura Studio",    members:["1033710696","1023891376","1014997827","1029144591","1021675662"]},
-  "g_04": {id:"g_04", name:"Canta y Come",   members:["1000077541","1016951985","1011100245","1000350624","1040874338","1013108778"]},
-  "g_05": {id:"g_05", name:"Axis",           members:["1013106028","1032877570","1014861582","1027151839","1127242102"]},
-  "g_06": {id:"g_06", name:"Nara Nails",     members:["1023375110","1070007994","1013256390","1019843108"]},
-  "g_07": {id:"g_07", name:"Armonía Lashes", members:["1028863347","1030557501","1033102176","1013263957","1034577536"]}
-};
-
-const DEFAULT_SUST = {
-  "g_01": {total:18, label:"Excelente"},
-  "g_02": {total:20, label:"Excelente"},
-  "g_03": {total:19, label:"Excelente"},
-  "g_04": {total:17, label:"Bueno"},
-  "g_05": {total:19, label:"Excelente"},
-  "g_06": {total:11, label:"Regular"},
-  "g_07": {total:12, label:"Regular"}
-};
-
-const SUST_EXCLUIDOS = ["1127242102","1034577536"];
-
-const _mkP = obs => ({status:'P', obs: obs||''});
-const _mkA = obs => ({status:'A', obs: obs||''});
-
-const _ALL_P = () => ({
-  "1000077541":_mkP(),"1000350624":_mkP(),"1011100245":_mkP(),"1013106028":_mkP(),
-  "1013256390":_mkP(),"1013263957":_mkP(),"1014861582":_mkP(),"1014997827":_mkP(),
-  "1016596401":_mkP(),"1016951985":_mkP(),"1019764949":_mkP(),"1019843108":_mkP(),
-  "1021397707":_mkP(),"1021675662":_mkP(),"1023369961":_mkP(),"1023375110":_mkP(),
-  "1023891376":_mkP(),"1027151839":_mkP(),"1028663002":_mkP(),"1028863347":_mkP(),
-  "1029143351":_mkP(),"1029144591":_mkP(),"1029660441":_mkP(),"1030557501":_mkP(),
-  "1031541266":_mkP(),"1031805029":_mkP(),"1032877570":_mkP(),"1033102053":_mkP(),
-  "1033102176":_mkP(),"1033710696":_mkP(),"1034577536":_mkP(),"1040874338":_mkP(),
-  "1070007994":_mkP(),"1141317881":_mkP(),"1013108778":_mkP(),"1127242102":_mkP()
-});
-
-const DEFAULT_ATT_SESSIONS = {
-  "2026-03-10": {
-    date:"2026-03-10", week:"Semana 1",
-    topic:"Primera entrega — Sustentación Diagnóstica",
-    records: {
-      "1000077541":_mkP(), "1000350624":_mkP(), "1011100245":_mkP(),
-      "1013106028":_mkP(), "1013256390":_mkA("Falla — ausente sin justificación"),
-      "1013263957":_mkP(), "1014861582":_mkP(), "1014997827":_mkP(),
-      "1016596401":_mkP(), "1016951985":_mkP(),
-      "1019764949":_mkA("Falla — ausente sin justificación"),
-      "1019843108":_mkA("Falla — ausente sin justificación"),
-      "1021397707":_mkP(), "1021675662":_mkP(), "1023369961":_mkP(),
-      "1023375110":_mkP(), "1023891376":_mkP(), "1027151839":_mkP(),
-      "1028663002":_mkP(), "1028863347":_mkP(), "1029143351":_mkP(),
-      "1029144591":_mkP(),
-      "1029660441":_mkA("Falla — ausente sin justificación"),
-      "1030557501":_mkP(), "1031541266":_mkP(), "1031805029":_mkP(),
-      "1032877570":_mkP(),
-      "1033102053":_mkA("Falla — ausente sin justificación"),
-      "1033102176":_mkP(), "1033710696":_mkP(),
-      "1034577536":_mkA("No se presentó a la sustentación — sin justificación"),
-      "1040874338":_mkA("Falla — ausente sin justificación"),
-      "1070007994":_mkP(), "1141317881":_mkP(), "1013108778":_mkP(),
-      "1127242102":_mkA("Falla — no asistió a clase ni a sustentación, sin incapacidad")
-    }
-  },
-  "2026-03-17": {
-    date:"2026-03-17", week:"Semana 2",
-    topic:"⚠️ Pendiente de registro — actualizar fallas",
-    records: _ALL_P()
-  },
-  "2026-03-24": {
-    date:"2026-03-24", week:"Semana 3",
-    topic:"⚠️ Pendiente de registro — actualizar fallas",
-    records: _ALL_P()
-  },
-  "2026-03-27": {
-    date:"2026-03-27", week:"Semana 4",
-    topic:"⚠️ Pendiente de registro — actualizar fallas",
-    records: _ALL_P()
-  },
-  "2026-04-01": {
-    date:"2026-04-01", week:"Semana 5",
-    topic:"⚠️ Pendiente de registro — actualizar fallas",
-    records: _ALL_P()
-  }
-};
-
-// ══════════════════════════════════════════════════
-//  LECTURA DE LOCALSTORAGE
-// ══════════════════════════════════════════════════
-const LS = key => { try { return JSON.parse(localStorage.getItem('eandash_'+key))||null; } catch{return null;} };
-
-let attSessions = LS('att_sessions') || DEFAULT_ATT_SESSIONS;
-let groups      = LS('groups')       || DEFAULT_GROUPS;
-let sustRecords = LS('sust_records') || DEFAULT_SUST;
-
-// ══════════════════════════════════════════════════
-//  HELPERS
-// ══════════════════════════════════════════════════
-function getGroupForStudent(sid) {
-  for(const [gid, g] of Object.entries(groups)) {
-    if(g.members && g.members.includes(sid)) return g;
-  }
-  return null;
-}
-
-function getSustForStudent(sid) {
-  if(SUST_EXCLUIDOS.includes(sid)) return {text:'⏳ Pendiente', cls:'sust-pending', val: null};
-  const g = getGroupForStudent(sid);
-  if(!g) return {text:'—', cls:'sust-none', val: null};
-  const sr = sustRecords[g.id];
-  if(!sr) return {text:'—', cls:'sust-none', val: null};
-  const tot = sr.total !== undefined ? sr.total : null;
-  if(tot === null) return {text:'—', cls:'sust-none', val: null};
-  let cls = 'sust-insuf', lbl = 'Insuficiente';
-  if(tot >= 17)      { cls = 'sust-excelente'; lbl = 'Excelente'; }
-  else if(tot >= 13) { cls = 'sust-bueno';     lbl = 'Bueno';     }
-  else if(tot >= 9)  { cls = 'sust-regular';   lbl = 'Regular';   }
-  return {text: `${tot}/20 ${lbl}`, cls, val: tot};
-}
-
-// ══════════════════════════════════════════════════
-//  OBTENER ÚLTIMAS N SESIONES
-// ══════════════════════════════════════════════════
-function getLastSessions(n=5) {
-  return Object.values(attSessions)
-    .sort((a,b) => a.date.localeCompare(b.date))
-    .slice(-n);
-}
-
-// ══════════════════════════════════════════════════
-//  RENDER KPIs
-// ══════════════════════════════════════════════════
-function renderKPIs(sessions, allStats) {
-  const totalSessions = sessions.length;
-  const totalStudents = STUDENTS.length;
-  const riesgo  = allStats.filter(s => s.fallas >= 3).length;
-  const atencion = allStats.filter(s => s.fallas >= 1 && s.fallas < 3).length;
-  const ok      = allStats.filter(s => s.fallas === 0).length;
-  const totalFallas = allStats.reduce((s,r) => s + r.fallas, 0);
-  const avgPct  = totalStudents > 0
-    ? Math.round(allStats.reduce((s,r) => s + r.pct, 0) / totalStudents)
-    : 0;
-
-  document.getElementById('kpi-row').innerHTML = `
-    <div class="kpi green">
-      <div class="label">Estudiantes</div>
-      <div class="value">${totalStudents}</div>
-      <div class="sub">Matriculados</div>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+    <title>Consolidado Asistencia · COMUNICACIÓN DIGITAL 360</title>
+    <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',Arial,sans-serif;background:#F1F8E9;color:#212121;font-size:13px}
+    .hdr{background:linear-gradient(135deg,#1B5E20,#388E3C);color:white;padding:12px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 3px 8px rgba(0,0,0,.3)}
+    .hdr .logo{font-size:26px;font-weight:900;color:#92D050}
+    .hdr h1{font-size:14px;font-weight:700}
+    .hdr p{font-size:11px;opacity:.85;margin-top:2px}
+    .hdr .ts{margin-left:auto;background:#92D050;color:#1B5E20;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:700;white-space:nowrap}
+    .body{padding:16px 20px;max-width:1300px;margin:0 auto}
+    .kpis{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+    .kpi{background:white;border-radius:8px;padding:10px 14px;border-top:4px solid #388E3C;box-shadow:0 2px 6px rgba(0,0,0,.1);min-width:130px}
+    .kpi .lbl{font-size:10px;text-transform:uppercase;color:#546E7A;font-weight:700}
+    .kpi .val{font-size:24px;font-weight:900;line-height:1.2}
+    .card{background:white;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);padding:16px;margin-bottom:14px;border-left:4px solid #388E3C}
+    .card-title{font-size:14px;font-weight:700;color:#1B5E20;margin-bottom:12px}
+    .tw{overflow-x:auto;border-radius:6px;border:1px solid #A5D6A7}
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    thead th{background:#388E3C;color:white;padding:8px 8px;text-align:left;font-size:11px;white-space:nowrap;position:sticky;top:0}
+    tbody tr:nth-child(even){background:#FAFAFA}
+    tbody tr:hover{background:#C8E6C9}
+    td{padding:6px 8px;border-bottom:1px solid #E8F5E9;vertical-align:middle}
+    .num{text-align:center}
+    .pill{padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;display:inline-block}
+    .note{font-size:11px;color:#546E7A;margin-top:10px;padding:8px 12px;background:white;border-radius:6px;border-left:4px solid #1565C0}
+    @media print{.hdr .ts{display:none}}
+  </style>
+  </head><body>
+    <div class="hdr">
+      <div class="logo">EAN</div>
+      <div><h1>📋 Consolidado de Asistencia</h1><p>COMUNICACIÓN DIGITAL 360 MARKETING · AFPN0093 · S1G1 2026-001 · 1 sesiones</p></div>
+      <div class="ts">Actualizado: 27/3/2026, 10:11:40 p. m.</div>
     </div>
-    <div class="kpi blue" style="border-top-color:#1565C0">
-      <div class="label">Sesiones registradas</div>
-      <div class="value" style="color:#1565C0">${totalSessions}</div>
-      <div class="sub">de 5 visualizadas</div>
-    </div>
-    <div class="kpi green">
-      <div class="label">% Asistencia promedio</div>
-      <div class="value">${avgPct}%</div>
-      <div class="sub">del grupo</div>
-    </div>
-    <div class="kpi">
-      <div class="label">Total fallas acumuladas</div>
-      <div class="value">${totalFallas}</div>
-      <div class="sub">en ${totalSessions} sesión(es)</div>
-    </div>
-    <div class="kpi orange">
-      <div class="label">⚠️ En atención</div>
-      <div class="value">${atencion}</div>
-      <div class="sub">1–2 fallas</div>
-    </div>
-    <div class="kpi red">
-      <div class="label">🔴 En riesgo</div>
-      <div class="value">${riesgo}</div>
-      <div class="sub">3+ fallas</div>
-    </div>
-    <div class="kpi green">
-      <div class="label">✅ En regla</div>
-      <div class="value">${ok}</div>
-      <div class="sub">0 fallas</div>
-    </div>
-  `;
-}
-
-// ══════════════════════════════════════════════════
-//  RENDER SESSION CARDS
-// ══════════════════════════════════════════════════
-function renderSessionCards(sessions) {
-  const wrap = document.getElementById('sessions-row');
-  if(!sessions.length) { wrap.innerHTML = '<p style="color:var(--ean-gray);font-size:12px">No hay sesiones registradas aún.</p>'; return; }
-  wrap.innerHTML = sessions.map((s,i) => {
-    const recs = Object.values(s.records||{});
-    const pCount = recs.filter(r=>r.status==='P').length;
-    const aCount = recs.filter(r=>r.status==='A').length;
-    const tCount = recs.filter(r=>r.status==='T').length;
-    return `<div class="sess-card">
-      <div class="s-date">📅 ${fmtDate(s.date)}</div>
-      <div class="s-week">${s.week||'Semana '+(i+1)} · Sesión ${i+1}</div>
-      <div class="s-topic">${s.topic||'—'}</div>
-      <div class="s-stats">
-        <span class="badge-p">✅ ${pCount} presentes</span>
-        <span class="badge-a">❌ ${aCount} fallas</span>
-        ${tCount>0?`<span class="badge-t">⏰ ${tCount} tardanzas</span>`:''}
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function fmtDate(d) {
-  if(!d) return '—';
-  const [y,m,day] = d.split('-');
-  const meses = ['','ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  return `${parseInt(day)} ${meses[parseInt(m)]} ${y}`;
-}
-
-// ══════════════════════════════════════════════════
-//  FILL GRUPO FILTER
-// ══════════════════════════════════════════════════
-function fillGrupoFilter() {
-  const sel = document.getElementById('fil-grupo');
-  sel.innerHTML = '<option value="">Todos los grupos</option>';
-  Object.values(groups).forEach(g => {
-    sel.innerHTML += `<option value="${g.id}">${g.name}</option>`;
-  });
-  sel.innerHTML += '<option value="__none">Sin grupo</option>';
-}
-
-// ══════════════════════════════════════════════════
-//  BUILD STATS PER STUDENT
-// ══════════════════════════════════════════════════
-function buildStats(sessions) {
-  return STUDENTS.map(st => {
-    let pres=0, fallas=0, tard=0;
-    const sessionStatus = sessions.map(s => {
-      const rec = s.records && s.records[st.id];
-      if(!rec) return null;
-      if(rec.status==='P') { pres++; return 'P'; }
-      if(rec.status==='A') { fallas++; return 'A'; }
-      if(rec.status==='T') { tard++; pres++; return 'T'; }
-      return null;
-    });
-    const total = pres + fallas;
-    const pct   = total > 0 ? Math.round((pres/total)*100) : 100;
-    return { st, pres, fallas, tard, pct, sessionStatus };
-  });
-}
-
-// ══════════════════════════════════════════════════
-//  RENDER TABLE
-// ══════════════════════════════════════════════════
-function renderTable() {
-  const sessions  = getLastSessions(5);
-  const allStats  = buildStats(sessions);
-  const filGrupo  = document.getElementById('fil-grupo').value;
-  const filEstado = document.getElementById('fil-estado').value;
-  const filBuscar = document.getElementById('fil-buscar').value.toLowerCase();
-
-  // Update session header
-  document.getElementById('th-sessions').setAttribute('colspan', Math.max(sessions.length,1));
-  document.getElementById('th-session-cols').innerHTML = sessions.length
-    ? sessions.map((s,i) => `<th class="num" title="${s.topic||''}" style="background:var(--ean-dark);font-size:10px;cursor:help">${s.week||'S'+(i+1)}<br><span style="font-weight:400;opacity:0.8">${fmtDate(s.date)}</span></th>`).join('')
-    : '<th style="background:var(--ean-dark)">—</th>';
-
-  // Filter
-  let rows = allStats.filter(({st, fallas, sessionStatus}) => {
-    if(filBuscar && !st.name.toLowerCase().includes(filBuscar) && !st.id.includes(filBuscar)) return false;
-    if(filGrupo) {
-      const g = getGroupForStudent(st.id);
-      if(filGrupo === '__none') { if(g) return false; }
-      else if(!g || g.id !== filGrupo) return false;
-    }
-    if(filEstado) {
-      if(filEstado === 'ok'     && fallas !== 0) return false;
-      if(filEstado === 'aten'   && !(fallas >= 1 && fallas < 3)) return false;
-      if(filEstado === 'riesgo' && fallas < 3) return false;
-    }
-    return true;
-  });
-
-  document.getElementById('lbl-total').textContent = `Mostrando ${rows.length} de ${STUDENTS.length} estudiantes`;
-
-  const tbody = document.getElementById('tbody');
-  if(!rows.length) {
-    tbody.innerHTML = `<tr><td colspan="${9+sessions.length}" class="no-data">No hay estudiantes con los filtros seleccionados.</td></tr>`;
-    return;
-  }
-
-  tbody.innerHTML = rows.map(({st, pres, fallas, tard, pct, sessionStatus}, idx) => {
-    const grp  = getGroupForStudent(st.id);
-    const sust = getSustForStudent(st.id);
-
-    // Estado badge
-    let estadoCls, estadoTxt;
-    if(fallas >= 3)      { estadoCls = 'estado-riesgo'; estadoTxt = '🔴 Riesgo'; }
-    else if(fallas >= 1) { estadoCls = 'estado-aten';   estadoTxt = '⚠️ Atención'; }
-    else                 { estadoCls = 'estado-ok';     estadoTxt = '✅ En regla'; }
-
-    // Fallas color class
-    let fallasCls = fallas >= 3 ? '' : fallas >= 1 ? 'one' : 'zero';
-
-    // Pct bar
-    const barCls = pct < 70 ? 'low' : pct < 85 ? 'med' : '';
-    const barW   = Math.max(pct, 0);
-
-    // Session cells
-    const sessCells = sessions.map((s, i) => {
-      const st2 = sessionStatus[i];
-      if(st2 === 'P') return `<td class="num"><span class="att-p">P</span></td>`;
-      if(st2 === 'A') return `<td class="num"><span class="att-a">A</span></td>`;
-      if(st2 === 'T') return `<td class="num"><span class="att-t">T</span></td>`;
-      return `<td class="num"><span class="att-nd">—</span></td>`;
-    }).join('');
-
-    return `<tr>
-      <td class="num" style="color:#90A4AE;font-size:11px">${idx+1}</td>
-      <td>
-        <div class="s-name">${st.name}</div>
-        <div class="s-id">CC ${st.id}</div>
-      </td>
-      <td>
-        ${grp
-          ? `<span class="grp-pill">${grp.name}</span>`
-          : `<span class="grp-pill none">Sin grupo</span>`
-        }
-      </td>
-      ${sessCells}
-      <td class="num" style="font-weight:700;color:var(--ean-main)">${pres}</td>
-      <td class="num"><span class="cnt-fallas ${fallasCls}">${fallas}</span></td>
+    <div class="body">
+      <div class="kpis"><div class="kpi"><div class="lbl">Sesiones</div><div class="val" style="color:#1565C0">1</div></div><div class="kpi"><div class="lbl">% Asist. prom.</div><div class="val" style="color:#2E7D32">78%</div></div><div class="kpi"><div class="lbl">Total fallas</div><div class="val" style="color:#424242">8</div></div><div class="kpi"><div class="lbl">⚠️ En atención</div><div class="val" style="color:#F57F17">8</div></div><div class="kpi"><div class="lbl">🔴 En riesgo</div><div class="val" style="color:#C62828">0</div></div><div class="kpi"><div class="lbl">✅ Sin fallas</div><div class="val" style="color:#2E7D32">28</div></div></div>
+      <div class="card">
+        <div class="card-title">Asistencia por estudiante · Sesiones: 2026-03-10</div>
+        <div class="tw"><table><thead><tr>
+          <th>#</th><th>Estudiante</th><th>Grupo</th><th class="num" style="font-size:10px" title="Primera entrega — Sustentación Diagnóstica">Semana 1<br><span style="font-weight:400;opacity:.8">03-10</span></th>
+          <th class="num">✅ Pres.</th><th class="num">❌ Fallas</th><th class="num">% Asist.</th><th class="num">Estado</th>
+        </tr></thead><tbody><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">1</td>
+      <td><b>Tinoco Ruiz Sofía</b><br><span style="font-size:10px;color:#90A4AE">CC 1000077541</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Canta y Come</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
       <td class="num">
-        <div class="pbar-wrap"><div class="pbar-fill ${barCls}" style="width:${barW}%"></div></div>
-        <span class="pct" style="margin-left:5px">${pct}%</span>
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
       </td>
-      <td style="text-align:center">
-        <span class="sust-score ${sust.cls}">${sust.text}</span>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">2</td>
+      <td><b>Rondón Leguizamo Guillermo Andrés</b><br><span style="font-size:10px;color:#90A4AE">CC 1000350624</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Canta y Come</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
       </td>
-      <td style="text-align:center">
-        <span class="estado ${estadoCls}">${estadoTxt}</span>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">3</td>
+      <td><b>Villa Fajardo Zarith Juliana</b><br><span style="font-size:10px;color:#90A4AE">CC 1011100245</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Canta y Come</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
       </td>
-    </tr>`;
-  }).join('');
-
-  // Update KPIs & session cards (first render)
-  renderKPIs(sessions, allStats);
-  renderSessionCards(sessions);
-}
-
-// ══════════════════════════════════════════════════
-//  RELOAD FROM LOCALSTORAGE
-// ══════════════════════════════════════════════════
-function reloadData() {
-  attSessions = LS('att_sessions') || DEFAULT_ATT_SESSIONS;
-  groups      = LS('groups')       || DEFAULT_GROUPS;
-  sustRecords = LS('sust_records') || DEFAULT_SUST;
-  fillGrupoFilter();
-  renderTable();
-  const b = document.querySelector('.btn-outline');
-  b.textContent = '✅ Actualizado';
-  setTimeout(() => b.innerHTML = '🔄 Actualizar', 1500);
-}
-
-// ══════════════════════════════════════════════════
-//  INIT
-// ══════════════════════════════════════════════════
-document.getElementById('lbl-fecha').textContent =
-  new Date().toLocaleDateString('es-CO',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-
-fillGrupoFilter();
-renderTable();
-</script>
-</body>
-</html>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">4</td>
+      <td><b>Muriel Salgado Juan Sebastián</b><br><span style="font-size:10px;color:#90A4AE">CC 1013106028</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Axis</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">5</td>
+      <td><b>Cifuentes Martínez Camila Alejandra</b><br><span style="font-size:10px;color:#90A4AE">CC 1013256390</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Nara Nails</span></td>
+      <td class="num"><span style="background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">A</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">0</td>
+      <td class="num" style="color:#E65100;font-weight:800">1</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#C62828;width:0%"></div>
+        </div> <span style="font-size:11px">0%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">6</td>
+      <td><b>Garzón Moya Juan Jerónimo</b><br><span style="font-size:10px;color:#90A4AE">CC 1013263957</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Armonía Lashes</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">7</td>
+      <td><b>Mahecha Lázaro Sebastián</b><br><span style="font-size:10px;color:#90A4AE">CC 1014861582</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Axis</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">8</td>
+      <td><b>Hernández Muñoz María José</b><br><span style="font-size:10px;color:#90A4AE">CC 1014997827</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Aura Studio</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">9</td>
+      <td><b>Lozano Álvarez Yesenia Sophia</b><br><span style="font-size:10px;color:#90A4AE">CC 1016596401</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Yoga Serena</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">10</td>
+      <td><b>Pérez Cortés María José</b><br><span style="font-size:10px;color:#90A4AE">CC 1016951985</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Canta y Come</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">11</td>
+      <td><b>Norato Burgos Valerie</b><br><span style="font-size:10px;color:#90A4AE">CC 1019764949</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Yoga Serena</span></td>
+      <td class="num"><span style="background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">A</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">0</td>
+      <td class="num" style="color:#E65100;font-weight:800">1</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#C62828;width:0%"></div>
+        </div> <span style="font-size:11px">0%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">12</td>
+      <td><b>Romero Rojas Juliana Sofía</b><br><span style="font-size:10px;color:#90A4AE">CC 1019843108</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Nara Nails</span></td>
+      <td class="num"><span style="background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">A</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">0</td>
+      <td class="num" style="color:#E65100;font-weight:800">1</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#C62828;width:0%"></div>
+        </div> <span style="font-size:11px">0%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">13</td>
+      <td><b>Martínez Martínez Laura Juliana</b><br><span style="font-size:10px;color:#90A4AE">CC 1021397707</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Renacer Vital</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">14</td>
+      <td><b>Riaño Pachón Laura Andrea</b><br><span style="font-size:10px;color:#90A4AE">CC 1021675662</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Aura Studio</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">15</td>
+      <td><b>Rodríguez Salcedo Karol Valentina</b><br><span style="font-size:10px;color:#90A4AE">CC 1023369961</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Renacer Vital</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">16</td>
+      <td><b>Segura Rojas Ninny Carolina</b><br><span style="font-size:10px;color:#90A4AE">CC 1023375110</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Nara Nails</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">17</td>
+      <td><b>Trujillo Ríos Andrea Catalina</b><br><span style="font-size:10px;color:#90A4AE">CC 1023891376</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Aura Studio</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">18</td>
+      <td><b>Acevedo Caro Juan Diego</b><br><span style="font-size:10px;color:#90A4AE">CC 1027151839</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Axis</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">19</td>
+      <td><b>Galvis Triana Michel Fernanda</b><br><span style="font-size:10px;color:#90A4AE">CC 1028663002</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Renacer Vital</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">20</td>
+      <td><b>Aragón Calderón Verónica Ester</b><br><span style="font-size:10px;color:#90A4AE">CC 1028863347</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Armonía Lashes</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">21</td>
+      <td><b>Castillo Vargas Karen Stefanny</b><br><span style="font-size:10px;color:#90A4AE">CC 1029143351</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Yoga Serena</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">22</td>
+      <td><b>Fernández Rueda Laura Natalia</b><br><span style="font-size:10px;color:#90A4AE">CC 1029144591</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Aura Studio</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">23</td>
+      <td><b>Chica Vega Sara Alejandra</b><br><span style="font-size:10px;color:#90A4AE">CC 1029660441</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Yoga Serena</span></td>
+      <td class="num"><span style="background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">A</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">0</td>
+      <td class="num" style="color:#E65100;font-weight:800">1</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#C62828;width:0%"></div>
+        </div> <span style="font-size:11px">0%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">24</td>
+      <td><b>Aunta Munar Danna Valentina</b><br><span style="font-size:10px;color:#90A4AE">CC 1030557501</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Armonía Lashes</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">25</td>
+      <td><b>Camacho Rico Juan Esteban</b><br><span style="font-size:10px;color:#90A4AE">CC 1031541266</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Yoga Serena</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">26</td>
+      <td><b>Ángel Rojas Nashua Silvana</b><br><span style="font-size:10px;color:#90A4AE">CC 1031805029</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Renacer Vital</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">27</td>
+      <td><b>Vila Peña Laura Sofía</b><br><span style="font-size:10px;color:#90A4AE">CC 1032877570</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Axis</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">28</td>
+      <td><b>Dávila González Sara Lucía</b><br><span style="font-size:10px;color:#90A4AE">CC 1033102053</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Sin grupo</span></td>
+      <td class="num"><span style="background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">A</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">0</td>
+      <td class="num" style="color:#E65100;font-weight:800">1</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#C62828;width:0%"></div>
+        </div> <span style="font-size:11px">0%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">29</td>
+      <td><b>Lopera Cristiano Valentina</b><br><span style="font-size:10px;color:#90A4AE">CC 1033102176</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Armonía Lashes</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">30</td>
+      <td><b>Brand Mendieta Gabriela</b><br><span style="font-size:10px;color:#90A4AE">CC 1033710696</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Aura Studio</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">31</td>
+      <td><b>Díaz Moreno Juliana</b><br><span style="font-size:10px;color:#90A4AE">CC 1034577536</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Armonía Lashes</span></td>
+      <td class="num"><span style="background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">A</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">0</td>
+      <td class="num" style="color:#E65100;font-weight:800">1</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#C62828;width:0%"></div>
+        </div> <span style="font-size:11px">0%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">32</td>
+      <td><b>Urrea Ramírez Mariana</b><br><span style="font-size:10px;color:#90A4AE">CC 1040874338</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Canta y Come</span></td>
+      <td class="num"><span style="background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">A</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">0</td>
+      <td class="num" style="color:#E65100;font-weight:800">1</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#C62828;width:0%"></div>
+        </div> <span style="font-size:11px">0%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">33</td>
+      <td><b>Canastero Venegas Isabel Sofía</b><br><span style="font-size:10px;color:#90A4AE">CC 1070007994</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Nara Nails</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">34</td>
+      <td><b>Laverde Vargas Sara Valentina</b><br><span style="font-size:10px;color:#90A4AE">CC 1141317881</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Renacer Vital</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">35</td>
+      <td><b>Castelblanco Moreno Paula Alejandra</b><br><span style="font-size:10px;color:#90A4AE">CC 1013108778</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Canta y Come</span></td>
+      <td class="num"><span style="background:#C8E6C9;color:#1B5E20;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">P</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">1</td>
+      <td class="num" style="color:#2E7D32;font-weight:700">0</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#2E7D32;width:100%"></div>
+        </div> <span style="font-size:11px">100%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#E8F5E9;color:#1B5E20">✅ En regla</span></td>
+    </tr><tr>
+      <td class="num" style="color:#90A4AE;font-size:11px">36</td>
+      <td><b>Niño Díaz Lucas Eduardo</b><br><span style="font-size:10px;color:#90A4AE">CC 1127242102</span></td>
+      <td><span class="pill" style="background:#C8E6C9;color:#1B5E20">Axis</span></td>
+      <td class="num"><span style="background:#FFCDD2;color:#B71C1C;border-radius:4px;padding:1px 6px;font-weight:700;font-size:11px">A</span></td>
+      <td class="num" style="font-weight:700;color:#2E7D32">0</td>
+      <td class="num" style="color:#E65100;font-weight:800">1</td>
+      <td class="num">
+        <div style="background:#E0E0E0;border-radius:4px;height:6px;width:55px;display:inline-block;vertical-align:middle">
+          <div style="height:100%;border-radius:4px;background:#C62828;width:0%"></div>
+        </div> <span style="font-size:11px">0%</span>
+      </td>
+      <td class="num"><span class="pill" style="background:#FFF3E0;color:#E65100">⚠️ Atención</span></td>
+    </tr></tbody></table></div>
+      </div>
+      <div class="note">
+        <b>Leyenda:</b>
+        <span style="background:#C8E6C9;color:#1B5E20;padding:1px 6px;border-radius:4px;font-weight:700">P</span> Presente &nbsp;
+        <span style="background:#FFCDD2;color:#B71C1C;padding:1px 6px;border-radius:4px;font-weight:700">A</span> Ausente &nbsp;
+        <span style="background:#FFF9C4;color:#E65100;padding:1px 6px;border-radius:4px;font-weight:700">T</span> Tardanza &nbsp;|&nbsp;
+        🔴 Riesgo = 3+ fallas · ⚠️ Atención = 1-2 fallas · ✅ En regla = 0 fallas
+      </div>
+    </div>
+  </body></html>
